@@ -1,6 +1,6 @@
 # grunt-verify-app
 
-> 
+> Verifies an application listens on a port when spawned
 
 ```shell
 npm install --save-dev grunt-verify-app
