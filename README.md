@@ -14,8 +14,10 @@ Here are the defaults
 verify_app: {
     server: {
         options: {
+            script: 'app',
             port: 3000,
-            script: 'app'
+            timeout: 10000, // 
+            frequency: 1000 // how often to check the port
         }
     }
 }

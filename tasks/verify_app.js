@@ -26,20 +26,25 @@ module.exports = function(grunt) {
             frequency: options.frequency
         });
         var done = this.async();
-
-        console.log('[verify_app] Spawning node process to listen on port %s...', options.port);
-
         var env = _.clone(process.env);
         env.port = options.port;
+
+        console.log('[verify_app] Spawning node process to listen on port %s...', options.port);
 
         var app = spawn('node', [options.script], { stdio: 'inherit', env: env });
 
         watcher.on('listen', function (pid) {
-            console.log('[verify_app] Detected process %s listening on port %s.', pid, options.port);
-            console.log('[verify_app] Killing process...');
             app.kill('SIGHUP');
+            console.log('[verify_app] Detected process %s listening on port %s.', pid, options.port);
             done();
         });
+
+        if (options.timeout) {
+            setTimeout(function () {
+                app.kill('SIGHUP');
+                grunt.fatal('[verify_app] Timed out.');
+            }, options.timeout);
+        }
     });
 
 };
