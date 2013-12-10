@@ -15,19 +15,24 @@ verify_app: {
     server: {
         options: {
             port: 3000,
+            script: 'app'
         }
     }
 }
 ```
+
 Run it!
 
 ```shell
 grunt verify_app:server
 ```
 
+## In action
 
-
+![verification.png][1]
 
 ## License
 
 MIT
+
+  [1]: http://i.stack.imgur.com/oZxaJ.png

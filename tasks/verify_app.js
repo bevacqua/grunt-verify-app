@@ -10,30 +10,33 @@
 
 module.exports = function(grunt) {
 
-    registerMultiTask('verify', 'Verifies an application eventually listens on a given port', function () {
+    grunt.registerMultiTask('verify_app', 'Verifies an application eventually listens on a given port', function () {
         var options = this.options({
             port: 3000,
             timeout: 10000,
-            frequency: 1000
+            frequency: 1000,
+            script: 'app'
         });
 
         var _ = require('lodash');
         var finder = require('process-finder');
         var spawn = require('child_process').spawn;
+        var watcher = finder.watch({
+            port: options.port,
+            frequency: options.frequency
+        });
         var done = this.async();
-        var port = Number(input);
-        var watcher = finder.watch(port);
 
-        console.log('Spawning node process to listen on port %s...', port);
+        console.log('[verify_app] Spawning node process to listen on port %s...', options.port);
 
         var env = _.clone(process.env);
-        env.port = port;
+        env.port = options.port;
 
-        var app = spawn('node', ['app'], { stdio: 'inherit', env: env });
+        var app = spawn('node', [options.script], { stdio: 'inherit', env: env });
 
-        watcher.on('listen', function(pid){
-            console.log('Detected process %s listening on port %s.', pid, port);
-            console.log('Killing process...');
+        watcher.on('listen', function (pid) {
+            console.log('[verify_app] Detected process %s listening on port %s.', pid, options.port);
+            console.log('[verify_app] Killing process...');
             app.kill('SIGHUP');
             done();
         });

@@ -1,6 +1,6 @@
 {
   "name": "grunt-verify-app",
-  "description": "",
+  "description": "Verifies an application listens on a port when spawned",
   "version": "0.1.0",
   "homepage": "https://github.com/bevacqua/grunt-verify-app",
   "author": {
@@ -32,7 +32,9 @@
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "process-finder": "0.0.7",
+    "lodash": "~2.4.1"
   },
   "peerDependencies": {
     "grunt": "0.4.2"
