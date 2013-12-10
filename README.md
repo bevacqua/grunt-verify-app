@@ -16,7 +16,7 @@ verify_app: {
         options: {
             script: 'app',
             port: 3000,
-            timeout: 10000, // 
+            timeout: 10000, // how long before giving up
             frequency: 1000 // how often to check the port
         }
     }
@@ -32,6 +32,8 @@ grunt verify_app:server
 ## In action
 
 ![verification.png][1]
+
+If the verification times out, the task is _considered a failure_.
 
 ## License
 
