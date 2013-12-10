@@ -1,0 +1,43 @@
+{
+  "name": "grunt-verify-app",
+  "description": "",
+  "version": "0.1.0",
+  "homepage": "https://github.com/bevacqua/grunt-verify-app",
+  "author": {
+    "name": "Nicolas Bevacqua",
+    "email": "nicolasbevacqua@gmail.com",
+    "url": "http://bevacqua.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bevacqua/grunt-verify-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bevacqua/grunt-verify-app/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/bevacqua/grunt-verify-app/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.2"
+  },
+  "peerDependencies": {
+    "grunt": "0.4.2"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
