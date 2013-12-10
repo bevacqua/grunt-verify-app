@@ -34,16 +34,23 @@ module.exports = function(grunt) {
         var app = spawn('node', [options.script], { stdio: 'inherit', env: env });
 
         watcher.on('listen', function (pid) {
-            app.kill('SIGHUP');
+            kill();
             console.log('[verify_app] Detected process %s listening on port %s.', pid, options.port);
             done();
         });
 
         if (options.timeout) {
             setTimeout(function () {
-                app.kill('SIGHUP');
+                kill();
                 grunt.fatal('[verify_app] Timed out.');
             }, options.timeout);
+        }
+
+        function kill () {
+            try {
+                app.kill('SIGHUP');
+            } catch (e) {
+            }
         }
     });
 
