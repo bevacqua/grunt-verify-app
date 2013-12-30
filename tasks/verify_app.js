@@ -28,19 +28,23 @@ module.exports = function(grunt) {
         var done = this.async();
         var env = _.clone(process.env);
         env.port = options.port;
+        var timer = null;
 
         console.log('[verify_app] Spawning node process to listen on port %s...', options.port);
 
         var app = spawn('node', [options.script], { stdio: 'inherit', env: env });
 
         watcher.on('listen', function (pid) {
+            if (timer !== null) {
+                clearTimeout(timer);
+            }
             kill();
             console.log('[verify_app] Detected process %s listening on port %s.', pid, options.port);
             done();
         });
 
         if (options.timeout) {
-            setTimeout(function () {
+            timer = setTimeout(function () {
                 kill();
                 grunt.fatal('[verify_app] Timed out.');
             }, options.timeout);
