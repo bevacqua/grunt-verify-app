@@ -1,7 +1,7 @@
 {
   "name": "grunt-verify-app",
   "description": "Verifies an application listens on a port when spawned",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/bevacqua/grunt-verify-app",
   "author": {
     "name": "Nicolas Bevacqua",
